@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
  */
 @Path(MyResource.PATH)
 public class MyResource {
-    final public static String PATH = "myresource";
+    final public static String PATH = "/myresource";
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
