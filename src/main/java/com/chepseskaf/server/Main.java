@@ -42,10 +42,8 @@ public class Main {
         
         LOGGER.info(String.format("Jersey app started with WADL available at "
                 + "%s/application.wadl\nHit enter to stop it...\n", BASE_URI));
-        LOGGER.info(String.format("%s%s", BASE_URI, MyResource.PATH));
-        LOGGER.info(String.format("%s%s", BASE_URI, HelloWorldResource.PATH));
-        LOGGER.info(String.format("%s%s", BASE_URI, XmlUserResource.PATH));
-        
+        LOGGER.info(String.format("%s", BASE_URI));
+
         if(System.in.read() == -1) {
             System.out.println("nothing available");
         }

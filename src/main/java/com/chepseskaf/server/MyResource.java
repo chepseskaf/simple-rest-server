@@ -63,8 +63,8 @@ public class MyResource {
 
     @POST
     @Consumes("application/x-www-form-urlencoded")
-    public void post(@FormParam("name") String name) {
-        LOGGER.info("name: " + name);
+    public void post(@FormParam("name") String name, @FormParam("hidden") String hidden) {
+        LOGGER.info("name: " + name + " - hidden: " + hidden);
     }
 
 }
