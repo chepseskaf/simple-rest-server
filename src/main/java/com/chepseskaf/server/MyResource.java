@@ -8,12 +8,14 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
+import java.util.logging.Logger;
 
 /**
  * Root resource (exposed at "myresource" path)
  */
 @Path(MyResource.PATH)
 public class MyResource {
+    private final static Logger LOGGER = Logger.getLogger(MyResource.class.getName());
     final public static String PATH = "/myresource";
 
     /**
@@ -23,7 +25,7 @@ public class MyResource {
      * @return String that will be returned as a text/plain response.
      */
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
         return "Got it!";
     }
@@ -55,7 +57,14 @@ public class MyResource {
         return new OutboundJaxrsResponse(Response.Status.OK, messageContext);
     }
 
-    private String format(ColorParam minColor) {
-        return String.format("'#%02x%02x%02x'", minColor.getRed(), minColor.getGreen(), minColor.getBlue());
+    private String format(ColorParam color) {
+        return String.format("'#%02x%02x%02x'", color.getRed(), color.getGreen(), color.getBlue());
     }
+
+    @POST
+    @Consumes("application/x-www-form-urlencoded")
+    public void post(@FormParam("name") String name) {
+        LOGGER.info("name: " + name);
+    }
+
 }
