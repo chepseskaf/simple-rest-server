@@ -2,12 +2,11 @@ package com.chepseskaf.server;
 
 import org.glassfish.jersey.message.internal.OutboundJaxrsResponse;
 import org.glassfish.jersey.message.internal.OutboundMessageContext;
-import org.glassfish.jersey.server.spi.Container;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.net.URI;
+import javax.ws.rs.core.*;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -67,4 +66,43 @@ public class MyResource {
         LOGGER.info("name: " + name + " - hidden: " + hidden);
     }
 
+    
+    @GET
+    @Path("context")
+    public String get(@Context UriInfo ui) {
+        MultivaluedMap<String, String> queryParams = ui.getQueryParameters();
+        MultivaluedMap<String, String> pathParams = ui.getPathParameters();
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("<p>######## PATH ##########</p>");
+        for (Map.Entry<String, List<String>> entry : pathParams.entrySet()) {
+            builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("</br>");
+        }
+        
+        builder.append("<p>######## QUERY ##########</p>");
+        for (Map.Entry<String, List<String>> entry : queryParams.entrySet()) {
+            builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("</br>");
+        }
+        return builder.toString();
+    }
+
+    @GET
+    @Path("header")
+    public String get(@Context HttpHeaders hh) {
+        MultivaluedMap<String, String> headerParams = hh.getRequestHeaders();
+        Map<String, Cookie> pathParams = hh.getCookies();
+        final StringBuilder builder = new StringBuilder();
+
+        builder.append("<p>######## HEADER ##########</p>");
+        for (Map.Entry<String, List<String>> entry : headerParams.entrySet()) {
+            builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("</br>");
+        }
+
+        builder.append("<p>######## COOKIES ##########</p>");
+        for (Map.Entry<String, Cookie> entry : pathParams.entrySet()) {
+            builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("</br>");
+        }
+        
+        return builder.toString();
+    }
 }
