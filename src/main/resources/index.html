@@ -21,8 +21,12 @@
     </li>
     <li><a href="http://localhost:8080/helloworld">/helloworld</a></li>
     <li><a href="http://localhost:8080/users/name">/users/name</a></li>
-    <li><a href="http://localhost:8080/myresource/context?az=12, 13, 14, 15">/myresource/context?az=12, 13, 14, 15</a></li>
-    <li><a href="http://localhost:8080/myresource/context?az=12&az=13&az=14&az=15&a=arg1">/myresource/context?az=12&az=13&az=14&az=15&a=arg1</a></li>
+    <li><a href="http://localhost:8080/myresource/context/q">/myresource/context/q</a></li>
+    <li><a href="http://localhost:8080/myresource/context/q/u/e/R/y">/myresource/context/q/u/e/R/y</a></li>
+    <li><a href="http://localhost:8080/myresource/query?az=12, 13, 14, 15">/myresource/query?az=12, 13, 14, 15</a></li>
+    <li><a href="http://localhost:8080/myresource/query?az=12, 13, 14, 15">/myresource/query?az=12, 13, 14, 15</a></li>
+    <li><a href="http://localhost:8080/myresource/query?az=12, 13, 14, 15">/myresource/query?az=12, 13, 14, 15</a></li>
+    <li><a href="http://localhost:8080/myresource/query?az=12&az=13&az=14&az=15&a=arg1">/myresource/query?az=12&az=13&az=14&az=15&a=arg1</a></li>
     <li><a href="http://localhost:8080/myresource/header">/myresource/header</a></li>
 </ul>
 
@@ -36,6 +40,23 @@
         </label><br>
         <input type="hidden" name="hidden" value="hidden-value">
         <input type="submit" value="Submit">
+    </form>
+</div>
+
+<div>
+    <form action="http://localhost:8080/bean/q" method="post">
+        <input type="hidden" name="p" value="hidden-value">
+        <input type="hidden" name="q" value="hidden-value">
+        <input type="hidden" name="m" value="hidden-value">
+        <input type="submit" value="post /bean/q">
+    </form>
+</div>
+<div>
+    <form action="http://localhost:8080/bean/p?q=a" method="post">
+        <input type="hidden" name="p" value="hidden-value">
+        <input type="hidden" name="q" value="hidden-value">
+        <input type="hidden" name="m" value="hidden-value">
+        <input type="submit" value="post /bean/p?q=a">
     </form>
 </div>
 

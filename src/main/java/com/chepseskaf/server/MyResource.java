@@ -65,12 +65,23 @@ public class MyResource {
     public void post(@FormParam("name") String name, @FormParam("hidden") String hidden) {
         LOGGER.info("name: " + name + " - hidden: " + hidden);
     }
-
     
     @GET
-    @Path("context")
-    public String get(@Context UriInfo ui) {
+    @Path("query")
+    public String query(@Context UriInfo ui) {
         MultivaluedMap<String, String> queryParams = ui.getQueryParameters();
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("<p>######## QUERY ##########</p>");
+        for (Map.Entry<String, List<String>> entry : queryParams.entrySet()) {
+            builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("</br>");
+        }
+        return builder.toString();
+    }
+
+    @GET
+    @Path("context/{m}")
+    public String path(@Context UriInfo ui) {
         MultivaluedMap<String, String> pathParams = ui.getPathParameters();
         StringBuilder builder = new StringBuilder();
 
@@ -78,11 +89,7 @@ public class MyResource {
         for (Map.Entry<String, List<String>> entry : pathParams.entrySet()) {
             builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("</br>");
         }
-        
-        builder.append("<p>######## QUERY ##########</p>");
-        for (Map.Entry<String, List<String>> entry : queryParams.entrySet()) {
-            builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("</br>");
-        }
+
         return builder.toString();
     }
 
