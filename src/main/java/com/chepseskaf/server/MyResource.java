@@ -3,6 +3,8 @@ package com.chepseskaf.server;
 import org.glassfish.jersey.message.internal.OutboundJaxrsResponse;
 import org.glassfish.jersey.message.internal.OutboundMessageContext;
 
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
@@ -111,5 +113,23 @@ public class MyResource {
         }
         
         return builder.toString();
+    }
+
+    @GET
+    @Path("jaxb")
+    @Produces("application/json")
+    public MyJaxbBean getMyBean() {
+        return new MyJaxbBean("Agamemnon", 32);
+    }
+
+    @GET
+    @Path("jsonobject")
+    @Produces("application/json")
+    public JsonObject getJsonObject() {
+        return Json.createObjectBuilder()
+                .add("name", "Agamemnon")
+                .add("age", 32)
+
+                .build();
     }
 }
