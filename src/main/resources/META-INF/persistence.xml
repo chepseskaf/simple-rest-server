@@ -1,0 +1,25 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <persistence-unit name="org.hibernate.tutorial.jpa">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        
+        <class>com.chepseskaf.server.contact.Contact</class>
+        <class>com.chepseskaf.server.contact.Address</class>
+
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.connection.driver_class" value="org.h2.Driver"/>
+
+            <!-- Assume test is the database name -->
+            <property name="hibernate.connection.url" value="jdbc:h2:~/h2db"/>
+            <property name="hibernate.connection.username" value="sa"/>
+            <property name="hibernate.connection.password" value="sa"/>
+
+            <property name="hbm2ddl.auto" value="update"/>
+
+
+        </properties>
+    </persistence-unit>
+</persistence>

@@ -2,25 +2,36 @@ package com.chepseskaf.server;
 
 import com.chepseskaf.server.contact.Address;
 import com.chepseskaf.server.contact.Contact;
+import org.hibernate.jpa.criteria.CriteriaQueryImpl;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * @author chepseskaf
  */
 @Path("contact")
 public class ContactManager {
+    private static final Logger LOGGER = Logger.getLogger(ContactManager.class.getName());
+    
     @GET
     @Produces("application/json")
     public List<Contact> list() {
-        return Arrays.asList(
-                new Contact(1, "Harvey", Arrays.asList(new Address("High Street", "Paris"))),
-                new Contact(2, "Mike", Arrays.asList(new Address("Down Street", "Toulouse")))
-
-        );
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
+        EntityManager manager = factory.createEntityManager();
+        try{
+            manager.getTransaction().begin();
+            return manager.createQuery("from Contact", Contact.class).getResultList();
+        }finally {
+            manager.getTransaction().commit();
+            manager.close();
+        }
     }
 }
