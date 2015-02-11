@@ -1,8 +1,6 @@
 package com.chepseskaf.server;
 
-import com.chepseskaf.server.contact.Address;
 import com.chepseskaf.server.contact.Contact;
-import org.hibernate.jpa.criteria.CriteriaQueryImpl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,7 +8,6 @@ import javax.persistence.Persistence;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 

@@ -13,7 +13,7 @@ public class Contact {
     @GeneratedValue
     public int id;
     public String name;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     public List<Address> addresses;
  
     public Contact() {}

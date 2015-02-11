@@ -75,7 +75,7 @@ public class Main {
                 "/_______  /\\___  >___|  /____  >\\___  >__|\n" +
                 "        \\/     \\/     \\/     \\/     \\/    ");
 
-        Desktop.getDesktop().browse(URI.create(String.format("http://%s/index.html", BASE_URI)));
+        Desktop.getDesktop().browse(URI.create(String.format("%s/index.html", BASE_URI)));
         
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
