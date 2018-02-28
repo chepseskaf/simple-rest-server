@@ -18,6 +18,8 @@ jobs:
       
       - run: export ARTIFACT_VERSION=`printf 'VERSION=${project.version}\n0\n' | mvn org.apache.maven.plugins:maven-help-plugin:2.2:evaluate | grep '^VERSION' | cut -d'=' -f2`
       
+      - run: echo $ARTIFACT_VERSION
+      
       - save_cache:
           paths:
             - ~/.m2
@@ -29,4 +31,4 @@ jobs:
           path: target/surefire-reports
       
       - store_artifacts:
-          path: target/simple-rest-server-$ARTIFACT_VERSION.jar
+          path: target/simple-rest-server-{{ .Environment.ARTIFACT_VERSION }}.jar
