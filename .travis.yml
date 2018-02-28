@@ -3,7 +3,3 @@ script: mvn test
 cache:
   directories:
   - $HOME/.m2
-before_install:
-  - gem install package_cloud
-script:
-  - package_cloud push chepseskaf/simple-rest-server target/simple-rest-server-1.0.jar
