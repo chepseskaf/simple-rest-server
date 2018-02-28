@@ -16,9 +16,7 @@ jobs:
       
       - run: mvn dependency:go-offline
       
-      - run: mvn org.apache.maven.plugins:maven-help-plugin:2.2:evaluate -Dexpression=project.version | grep -Ev '(^\[|Download\w+:)'
-      
-      - run: printf 'VERSION=${project.version}\n0\n' | mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate | grep '^VERSION'
+      - run: export ARTIFACT_VERSION=`printf 'VERSION=${project.version}\n0\n' | mvn org.apache.maven.plugins:maven-help-plugin:2.2:evaluate | grep '^VERSION' | cut -d'=' -f2`
       
       - save_cache:
           paths:
@@ -31,4 +29,4 @@ jobs:
           path: target/surefire-reports
       
       - store_artifacts:
-          path: target/simple-rest-server-0.0.1.jar
+          path: target/simple-rest-server-$ARTIFACT_VERSION.jar
