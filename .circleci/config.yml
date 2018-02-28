@@ -16,9 +16,11 @@ jobs:
       
       - run: mvn dependency:go-offline
       
-      - run: export ARTIFACT_VERSION=`printf 'VERSION=${project.version}\n0\n' | mvn org.apache.maven.plugins:maven-help-plugin:2.2:evaluate | grep '^VERSION' | cut -d'=' -f2`
+      - run: echo "export `printf 'ARTIFACT_VERSION=${project.version}\n0\n' | mvn org.apache.maven.plugins:maven-help-plugin:2.2:evaluate | grep '^ARTIFACT_VERSION'`" >> $BASH_ENV
       
       - run: echo $ARTIFACT_VERSION
+      
+      - run: echo {{ .Environment.ARTIFACT_VERSION }}
       
       - save_cache:
           paths:
