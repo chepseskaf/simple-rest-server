@@ -111,7 +111,26 @@
                 </configuration>
             </plugin>
         </plugins>
+        <extensions>
+          <extension>
+            <groupId>io.packagecloud.maven.wagon</groupId>
+            <artifactId>maven-packagecloud-wagon</artifactId>
+            <version>0.0.4</version>
+          </extension>
+        </extensions>
     </build>
+  
+    <distributionManagement>
+    <repository>
+      <id>packagecloud-travis</id>
+      <url>packagecloud+https://packagecloud.io/chepseskaf/simple-rest-server</url>
+    </repository>
+    <snapshotRepository>
+      <id>packagecloud-travis</id>
+      <url>packagecloud+https://packagecloud.io/chepseskaf/simple-rest-server</url>
+    </snapshotRepository>
+  </distributionManagement>
+  
 
     <properties>
         <jersey.version>2.15</jersey.version>
