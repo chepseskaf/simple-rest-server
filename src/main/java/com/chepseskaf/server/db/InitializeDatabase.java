@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -24,7 +25,7 @@ public class InitializeDatabase {
         
         entityManager.getTransaction().begin();
         Address nyc = new Address("Downing Street", "NYC");
-        Contact harvey = new Contact("Harvey", Arrays.asList(nyc));
+        Contact harvey = new Contact("Harvey", Collections.singletonList(nyc));
         entityManager.persist(nyc);
         entityManager.persist(harvey);
         entityManager.getTransaction().commit();

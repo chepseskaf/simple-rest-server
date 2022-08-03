@@ -9,7 +9,7 @@
         <class>com.chepseskaf.server.contact.Address</class>
 
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.connection.driver_class" value="org.h2.Driver"/>
 
             <!-- Assume test is the database name -->

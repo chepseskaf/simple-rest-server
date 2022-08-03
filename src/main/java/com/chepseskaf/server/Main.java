@@ -59,34 +59,31 @@ public class Main {
         final Object contact_count = q.getSingleResult();
         manager.getTransaction().commit();
         manager.close();
-        
+
         server.getServerConfiguration().addHttpHandler(new RootHandler(), "/index.html");
-        LOGGER.info(String.format("Jersey app started with WADL available at "
-                + "%s/application.wadl\nHit enter to stop it...\n", BASE_URI));
+
         LOGGER.info(String.format("%s", BASE_URI));
-        
-        
+
 
         LOGGER.info("Contacts: " + contact_count);
-        LOGGER.info("\n  _________                           .__ \n" +
-                " /   _____/ ____   ____   ______ ____ |__|\n" +
-                " \\_____  \\_/ __ \\ /    \\ /  ___// __ \\|  |\n" +
-                " /        \\  ___/|   |  \\\\___ \\\\  ___/|  |\n" +
-                "/_______  /\\___  >___|  /____  >\\___  >__|\n" +
-                "        \\/     \\/     \\/     \\/     \\/    ");
-
+        final AsciiArt msg = new AsciiArt("Sensei");
+        LOGGER.info(msg.toString());
         Desktop.getDesktop().browse(URI.create(String.format("%s/index.html", BASE_URI)));
-        
+
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
                 LOGGER.info("Closing...");
-                
+
                 factory.close();
-                server.shutdownNow();        
+                server.shutdownNow();
             }
         }));
-        
+
+        LOGGER.info(String.format("Jersey app started with WADL available at %s/application.wadl\n" +
+                "Hit enter to stop it...\n", BASE_URI));
+
+        System.in.read();
     }
 }
 

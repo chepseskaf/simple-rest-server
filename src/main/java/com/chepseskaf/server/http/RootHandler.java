@@ -4,6 +4,7 @@ import org.glassfish.grizzly.http.server.HttpHandler;
 import org.glassfish.grizzly.http.server.Request;
 import org.glassfish.grizzly.http.server.Response;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -15,7 +16,7 @@ public class RootHandler extends HttpHandler {
 
         final StringBuilder sb = new StringBuilder();
 
-        final Scanner scanner = new Scanner(this.getClass().getResourceAsStream("/index.html"));
+        final Scanner scanner = new Scanner(Objects.requireNonNull(this.getClass().getResourceAsStream("/index.html")));
         while (scanner.hasNextLine()) {
             sb.append(scanner.nextLine()).append('\n');
         }
